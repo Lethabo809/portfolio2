@@ -1,0 +1,630 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Epilogue:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --line: rgba(255,255,255,0.08);
+    --line2: rgba(255,255,255,0.15);
+    --txt: #f0ece4;
+    --txt2: #999;
+    --txt3: #555;
+    --accent: #c8963e;
+    --accent2: #e8b86d;
+    --r: 12px;
+  }
+
+  body {
+    font-family: 'Epilogue', sans-serif;
+    background: var(--bg);
+    color: var(--txt);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    border-bottom: 1px solid var(--line);
+    background: rgba(10,10,10,0.95);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--txt); text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 400;
+    color: var(--txt2); text-decoration: none;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--txt); }
+
+  .nav-cta {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 8px 20px; border-radius: 100px;
+    border: 1px solid var(--accent);
+    color: var(--accent); text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); color: #0a0a0a; }
+
+  .hero {
+    min-height: 93vh;
+    display: grid; grid-template-columns: 1fr 420px;
+    gap: 4rem; align-items: center;
+    padding: 0 3rem;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow-line {
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  .eyebrow-text {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.75rem;
+    color: var(--txt);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 1rem; font-weight: 300;
+    color: var(--txt2); line-height: 1.85;
+    max-width: 500px; margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; }
+
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px; border-radius: 100px;
+    background: var(--accent); color: #0a0a0a;
+    font-size: 0.83rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--accent2); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px; border-radius: 100px;
+    border: 1px solid var(--line2);
+    color: var(--txt2); font-size: 0.83rem;
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--txt2); color: var(--txt); }
+
+  .hero-panel {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 2rem;
+  }
+
+  .panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.5rem;
+  }
+
+  .panel-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+  }
+
+  .status-dot {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.7rem; color: #4ade80;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .status-dot::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%; background: #4ade80;
+  }
+
+  .panel-meta {
+    font-size: 0.78rem; color: var(--txt2);
+    margin-bottom: 1.5rem; line-height: 1.7;
+  }
+
+  .panel-meta span { color: var(--txt); }
+
+  .divider {
+    height: 1px; background: var(--line);
+    margin: 1.25rem 0;
+  }
+
+  .cap-label {
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--txt3);
+    margin-bottom: 0.75rem;
+  }
+
+  .capability-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .cap-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.8rem; color: var(--txt2);
+  }
+
+  .cap-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
+  section {
+    padding: 6rem 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-header { margin-bottom: 4rem; }
+
+  .s-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .s-eyebrow-line { width: 24px; height: 1px; background: var(--accent); }
+  .s-eyebrow-text {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .s-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.01em;
+    max-width: 580px;
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+
+  .about-body p {
+    font-size: 0.95rem; font-weight: 300;
+    color: var(--txt2); line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-body p strong { color: var(--txt); font-weight: 500; }
+
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: var(--r);
+    overflow: hidden; margin-top: 2rem;
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    padding: 1.5rem;
+  }
+
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--accent); display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-l {
+    font-size: 0.72rem; color: var(--txt3);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .about-sidebar { display: flex; flex-direction: column; gap: 1px; }
+
+  .sidebar-item {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 1.5rem;
+    margin-bottom: 1px;
+  }
+
+  .sidebar-label {
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--txt3);
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-value {
+    font-size: 0.9rem; color: var(--txt);
+    font-weight: 400;
+  }
+
+  .work-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: var(--r);
+    overflow: hidden;
+  }
+
+  .work-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .work-card:hover { background: var(--bg3); }
+
+  .work-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem; color: var(--txt3);
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .work-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 0.75rem; color: var(--txt);
+    line-height: 1.25;
+  }
+
+  .work-desc {
+    font-size: 0.82rem; font-weight: 300;
+    color: var(--txt2); line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .work-tag {
+    font-size: 0.65rem; padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--line2);
+    color: var(--txt3);
+    letter-spacing: 0.04em;
+  }
+
+  .work-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.75rem; color: var(--accent);
+    text-decoration: none; margin-top: 1rem;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+  }
+  .work-link:hover { opacity: 0.7; }
+
+  .skills-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .skill-col-title {
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--txt3);
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-rows { display: flex; flex-direction: column; gap: 1rem; }
+
+  .skill-row {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 1rem;
+  }
+
+  .skill-name { font-size: 0.875rem; color: var(--txt2); min-width: 120px; }
+
+  .bar-bg {
+    flex: 1; height: 2px;
+    background: var(--line2); border-radius: 1px;
+  }
+
+  .bar-fill {
+    height: 100%; border-radius: 1px;
+    background: var(--accent);
+  }
+
+  .contact-block {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 4rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 3rem; align-items: center;
+  }
+
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-sub {
+    font-size: 0.9rem; font-weight: 300;
+    color: var(--txt2); line-height: 1.7;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .c-link {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.83rem; color: var(--txt2);
+    text-decoration: none; white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .c-link:hover { color: var(--accent); }
+
+  .c-link-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
+  footer {
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  footer p { font-size: 0.75rem; color: var(--txt3); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text { animation: fadeIn 0.5s ease both; }
+  .hero-panel { animation: fadeIn 0.5s 0.12s ease both; }
+</style>
+
+<nav>
+  <a class="logo" href="#">Lethabo Sekgobela</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Get in touch</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Available for opportunities  </span>
+    </div>
+    <h1>Engineering<br><em>software</em><br>that works.</h1>
+    <p class="hero-desc">
+      Computer Science student  from the University of the Witwatersrand with a foundation in full-stack development, data systems, and security-conscious engineering. I build things that solve real problems.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-gold" href="#work">View my work &rarr;</a>
+      <a class="btn-ghost" href="https://github.com/Lethabo809" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="panel-header">
+      <span class="panel-name">Lethabo Sekgobela</span>
+      <span class="status-dot">Open to work</span>
+    </div>
+    <div class="panel-meta">
+      <div><span>Degree</span> &nbsp; BSc Computer Science</div>
+      <div><span>Institution</span> &nbsp; University of the Witwatersrand</div>
+      <div><span>Location</span> &nbsp; Johannesburg, South Africa</div>
+      <div><span>Year</span> &nbsp; Final Year &mdash; 2026</div>
+    </div>
+    <div class="divider"></div>
+    <p class="cap-label">Core capabilities</p>
+    <div class="capability-list">
+      <div class="cap-item"><div class="cap-dot"></div>Full-stack web application development</div>
+      <div class="cap-item"><div class="cap-dot"></div>RESTful API design and integration</div>
+      <div class="cap-item"><div class="cap-dot"></div>Data analysis and pipeline engineering</div>
+      <div class="cap-item"><div class="cap-dot"></div>Secure authentication and access control</div>
+      <div class="cap-item"><div class="cap-dot"></div>Collaborative, version-controlled workflows</div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-header">
+    <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">About</span></div>
+    <h2 class="s-title">Building with intention across the stack</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>
+        I am a Computer Science student at Wits with a strong interest in <strong>building systems that are robust, well-designed, and purposeful</strong>. My work spans the full development lifecycle &mdash; from architecting backend logic and integrating external data sources, to crafting intuitive frontend experiences.
+      </p>
+      <p>
+        Beyond traditional software engineering, I am actively deepening my knowledge in <strong>data science and machine learning</strong>, exploring how data can be cleaned, modelled, and surfaced to drive meaningful decisions. I approach security not as an afterthought but as a design principle.
+      </p>
+      <p>
+        I thrive in collaborative environments and am driven by the challenge of turning complex problems into clean, maintainable solutions. Currently seeking graduate roles and internships where I can contribute meaningfully from day one.
+      </p>
+      <div class="about-stats">
+        <div class="stat-box">
+          <span class="stat-n">React</span>
+          <span class="stat-l">Frontend framework</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-n">Node.js</span>
+          <span class="stat-l">Backend runtime</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-n">Python</span>
+          <span class="stat-l">Data & scripting</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-n">SQL</span>
+          <span class="stat-l">Data querying</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-sidebar">
+      <div class="sidebar-item">
+        <p class="sidebar-label">Institution</p>
+        <p class="sidebar-value">University of the Witwatersrand, Johannesburg</p>
+      </div>
+      <div class="sidebar-item">
+        <p class="sidebar-label">Qualification</p>
+        <p class="sidebar-value">Bachelor of Science in Computer Science</p>
+      </div>
+      <div class="sidebar-item">
+        <p class="sidebar-label">Focus areas</p>
+        <p class="sidebar-value">Software Engineering &middot; Data Science &middot; Cybersecurity</p>
+      </div>
+      <div class="sidebar-item">
+        <p class="sidebar-label">Availability</p>
+        <p class="sidebar-value">Graduate roles and  internships</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-header">
+    <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">Work</span></div>
+    <h2 class="s-title">Selected projects and engineering work</h2>
+  </div>
+  <div class="work-grid">
+    <div class="work-card">
+      <span class="work-num">01</span>
+      <h3 class="work-title">Platform Engineering &mdash; Provider &amp; Applicant Marketplace</h3>
+      <p class="work-desc">
+        Designed and built a full-stack web platform enabling service providers to connect with applicants through a structured, authenticated workflow. Implemented role-based access control, session management, and a clean matching interface that handles concurrent user types with distinct journeys.
+      </p>
+      <div class="work-tags">
+        <span class="work-tag">React</span>
+        <span class="work-tag">Node.js</span>
+        <span class="work-tag">JWT</span>
+        <span class="work-tag">REST API</span>
+        <span class="work-tag">Authentication</span>
+        <span class="work-tag">Team collaboration</span>
+      </div>
+      <a class="work-link" href="https://github.com/Lethabo809" target="_blank">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="work-card">
+      <span class="work-num">02</span>
+      <h3 class="work-title">External API Integration &mdash; Real-Time Data Interface</h3>
+      <p class="work-desc">
+        Built a responsive client application that consumes a live third-party REST API, handling asynchronous data fetching, error states, and dynamic rendering. Demonstrates practical understanding of HTTP protocols, JSON parsing, and building reliable interfaces over external data sources.
+      </p>
+      <div class="work-tags">
+        <span class="work-tag">JavaScript</span>
+        <span class="work-tag">Async/Await</span>
+        <span class="work-tag">REST API</span>
+        <span class="work-tag">Responsive UI</span>
+      </div>
+      <a class="work-link" href="https://github.com/Lethabo809" target="_blank">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="work-card">
+      <span class="work-num">03</span>
+      <h3 class="work-title">Data Management Application &mdash; Financial Analytics</h3>
+      <p class="work-desc">
+        Developed a data-driven application for tracking, categorising, and visualising personal financial records. Focused on clean data modelling, accurate computation logic, and presenting structured insights through intuitive visual components. Reflects an interest in data systems and analytical tooling.
+      </p>
+      <div class="work-tags">
+        <span class="work-tag">JavaScript</span>
+        <span class="work-tag">Data visualisation</span>
+        <span class="work-tag">State management</span>
+        <span class="work-tag">UX design</span>
+      </div>
+      <a class="work-link" href="https://github.com/Lethabo809" target="_blank">View on GitHub &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-header">
+    <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">Skills</span></div>
+    <h2 class="s-title">Technical proficiency</h2>
+  </div>
+  <div class="skills-layout">
+    <div>
+      <p class="skill-col-title">Languages &amp; Frameworks</p>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="skill-name">JavaScript</span><div class="bar-bg"><div class="bar-fill" style="width:82%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">React</span><div class="bar-bg"><div class="bar-fill" style="width:78%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Node.js</span><div class="bar-bg"><div class="bar-fill" style="width:74%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Python</span><div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Java</span><div class="bar-bg"><div class="bar-fill" style="width:62%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">C++</span><div class="bar-bg"><div class="bar-fill" style="width:55%"></div></div></div>
+      </div>
+    </div>
+    <div>
+      <p class="skill-col-title">Tools &amp; Domains</p>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="skill-name">REST APIs</span><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Git &amp; GitHub</span><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">SQL</span><div class="bar-bg"><div class="bar-fill" style="width:65%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Data analysis</span><div class="bar-bg"><div class="bar-fill" style="width:60%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Authentication &amp; security</span><div class="bar-bg"><div class="bar-fill" style="width:68%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Linux / CLI</span><div class="bar-bg"><div class="bar-fill" style="width:58%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-block">
+    <div>
+      <h2 class="contact-title">Ready to contribute.<br>Let's connect.</h2>
+      <p class="contact-sub">
+        Open to graduate positions, internships, and collaborative opportunities across software engineering, data, and cyber security. Based in Johannesburg &mdash; available remotely.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a class="c-link" href="mailto:lethabosekgobelaa@gmail.com">
+        <div class="c-link-dot"></div>lethabosekgobelaa@gmail.com
+      </a>
+      <a class="c-link" href="https://github.com/Lethabo809" target="_blank">
+        <div class="c-link-dot"></div>github.com/Lethabo809
+      </a>
+      <a class="c-link" href="https://linkedin.com/in/lethabo-sekgobela" target="_blank">
+        <div class="c-link-dot"></div> www.linkedin.com/in/lethabo-sekgobela-a33281412
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Lethabo Sekgobela &mdash; 2026</p>
+  <p>University of the Witwatersrand &middot; Computer Science</p>
+</footer>
